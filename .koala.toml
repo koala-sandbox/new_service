@@ -1,0 +1,95 @@
+ServiceName = "new_service"
+Name = ""
+Description = ""
+Owners = ["roy@koalaops.com"]
+ServerFramework = "python-flask"
+ServerMain = ""
+ArtifactRepository = "me-west1-docker.pkg.dev/koala-ops-demo-373407/koala-repo"
+Domain = "cluster.koalaops.com"
+Port = 8080
+ContainerEnvFileName = ".env"
+EnvironmentConfigFileName = "environment-values.env"
+LegacyIngressPatchEnabled = false
+EnvNamePrefixEnabled = false
+LegacyObjectSuffixEnabled = false
+
+[KoalaVersionInfo]
+  Version = "1.1.191"
+  DeployWorkflowVersion = "1.1.191"
+
+[Repo]
+  Name = "new_service"
+  GitUser = "koala-sandbox"
+  URL = ""
+  Path = ""
+  IsMonorepo = false
+
+[OpenAPIConfig]
+  SpecPath = ""
+  QueryPath = ""
+  CodegenTool = ""
+
+[[Environments]]
+  Name = "dev"
+  Namespace = "dev"
+  Cluster = "koala-demo-cluster"
+  Location = "me-west1"
+  CloudProvider = "gcp"
+  IngressEnabled = true
+  IngressHost = "dev.new_service.koala-demo-cluster.cluster.koalaops.com"
+  [Environments.EnvDeploymentConfig]
+    AutoDeploy = true
+    HPAEnabled = false
+    HPAMaxReplicas = 0
+    HPATargetCPUUtilizationPercentage = 0
+    HPATargetMemoryUtilizationPercentage = 0
+
+[[Environments]]
+  Name = "prod"
+  Namespace = "prod"
+  Cluster = "koala-demo-cluster"
+  Location = "me-west1"
+  CloudProvider = "gcp"
+  IngressEnabled = true
+  IngressHost = "prod.new_service.koala-demo-cluster.cluster.koalaops.com"
+  [Environments.EnvDeploymentConfig]
+    AutoDeploy = false
+    HPAEnabled = false
+    HPAMaxReplicas = 0
+    HPATargetCPUUtilizationPercentage = 0
+    HPATargetMemoryUtilizationPercentage = 0
+
+[[Environments]]
+  Name = "staging"
+  Namespace = "staging"
+  Cluster = "koala-demo-cluster"
+  Location = "me-west1"
+  CloudProvider = "gcp"
+  IngressEnabled = true
+  IngressHost = "staging.new_service.koala-demo-cluster.cluster.koalaops.com"
+  [Environments.EnvDeploymentConfig]
+    AutoDeploy = false
+    HPAEnabled = false
+    HPAMaxReplicas = 0
+    HPATargetCPUUtilizationPercentage = 0
+    HPATargetMemoryUtilizationPercentage = 0
+
+[SSLConfig]
+  CertName = "new_service-tls-cert"
+  Issuer = "letsencrypt"
+  IssuerContactEmail = "roy@koalaops.com"
+
+[Metrics]
+  Collector = ""
+  [Metrics.Endpoint]
+    Path = ""
+    Port = 0
+    Scheme = ""
+    Interval = ""
+
+[Tracing]
+  Backend = ""
+  URL = ""
+
+[Profiling]
+  Tool = ""

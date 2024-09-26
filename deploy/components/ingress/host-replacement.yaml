@@ -1,0 +1,10 @@
+source:
+  kind: ConfigMap
+  name: new_service-environment-values
+  fieldPath: data.HOSTNAME_PLACEHOLDER
+targets:
+- select:
+    kind: Ingress
+    name: new_service
+  fieldPaths:
+    - spec.rules.[host=HOSTNAME_PLACEHOLDER].host

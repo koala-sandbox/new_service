@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+configMapGenerator:
+- behavior: merge
+  name: new_service-environment-values
+  literals:
+  - INGRESS_TLS_SECRET_NAME=new_service-tls-cert
+patches:
+ - path: ./add-cert-annotations-patch.yaml
+replacements:
+ - path: ./tls-host-replacement.yaml
+ - path: ./tls-secret-name-replacement.yaml

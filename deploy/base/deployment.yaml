@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new_service
+  labels:
+    app: new_service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: new_service
+  template:
+    spec:
+      containers:
+      - name: new_service
+        image: me-west1-docker.pkg.dev/koala-ops-demo-373407/koala-repo/new_service:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: new_service-container-vars
+    metadata:
+      labels:
+        app: new_service
